@@ -19,10 +19,10 @@ public class Solution {
         Cat catGrandmother = new Cat(grandmotherName);
 
         String fatherName = reader.readLine();
-        Cat catFather = new Cat(fatherName, catGrandfather);
+        Cat catFather = new Cat(fatherName, null, catGrandfather);
 
         String motherName = reader.readLine();
-        Cat catMother = new Cat(motherName, catGrandmother);
+        Cat catMother = new Cat(motherName, catGrandmother, null);
 
         String sonName = reader.readLine();
         Cat catSon = new Cat(sonName, catMother, catFather);
@@ -42,15 +42,19 @@ public class Solution {
         private String name;
         private Cat catMother;
         private Cat catFather;
+//        private Cat catParent;
 
         Cat(String name) {
             this.name = name;
         }
 
+       /*
         Cat(String name, Cat catMother) {
             this.name = name;
             this.catMother = catMother;
         }
+
+        */
 
         Cat(String name, Cat catMother, Cat catFather) {
             this.name = name;
@@ -62,12 +66,16 @@ public class Solution {
             if ((catMother == null) && (catFather == null))
                 return "The cat's name is " + name + ", no mother, no father";
             else if (catMother == null)
-                return "The cat's name is " + name + ", no mother," + " father is " + catFather;
+                return "The cat's name is " + name + ", no mother" + ", father is " + catFather.name;
             else if (catFather == null)
-                return "The cat's name is " + name + ", mother is " + catMother + " no father";
+                return "The cat's name is " + name + ", mother is " + catMother.name + ", no father";
             else
-                return "The cat's name is " + name + ", mother is " + catMother + " father is " + catFather;
+                return "The cat's name is " + name + ", mother is " + catMother.name + ", father is " + catFather.name;
+
+
         }
+
+
     }
 
 }
